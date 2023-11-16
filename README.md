@@ -30,3 +30,21 @@ Make sure you have the following dependencies installed on your system:
     ```console
     b2sum zkLogin-main.zkey
     ```
+
+4. **Start Docker Services:**
+   Ensure the Docker daemon is running, and then initiate the Docker Compose setup:
+
+    ```console
+    docker-compose up
+    ```
+
+5. **Check Service Status:**
+   Wait for approximately 1 minute until both services are up and running. Verify the installation's success by pinging the prover-fe:
+
+    ```console
+    curl http://localhost:8001/ping
+    ```
+
+   If the installation was successful, you should receive a response indicating the service is operational.
+
+Feel free to refer to the [ZkLogin Docs](https://docs.sui.io/concepts/cryptography/zklogin#run-the-proving-service-in-your-backend) for any additional information or updates related to images and devnet keys.
