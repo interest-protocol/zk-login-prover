@@ -191,3 +191,17 @@ To simplify the management of environment variables and avoid hardcoding them di
    ```bash
    ssh root@your_droplet_ip
    ```
+
+4. **Install Docker and Docker Compose:**
+   Inside your Droplet, install Docker and Docker Compose.
+
+   ```bash
+   # Update package lists
+   sudo apt update
+
+   # Install Docker
+   sudo apt install docker.io
+
+   # Install Docker Compose
+   sudo apt install docker-compose
+   ```
