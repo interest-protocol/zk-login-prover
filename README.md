@@ -212,3 +212,20 @@ To simplify the management of environment variables and avoid hardcoding them di
    ```bash
    scp -r /path/to/your/docker/project root@your_droplet_ip:/path/on/droplet
    ```
+
+6. **Navigate to Project Directory:**
+   SSH into your Droplet and navigate to the directory where your Docker Compose files are located.
+
+   ```bash
+   ssh root@your_droplet_ip
+   cd /path/on/droplet
+   ```
+
+7. **Start Docker Services:**
+   Run Docker Compose to start your services.
+
+   ```bash
+   docker-compose up -d
+   ```
+
+   The `-d` flag runs the services in the background.
