@@ -108,7 +108,7 @@ The `services` section defines the different components of the application:
 
 This configuration file essentially defines how the prover and its frontend components should be configured, connected, and deployed using Docker Compose. It simplifies the deployment process and ensures that the necessary dependencies and configurations are in place.
 
-### Configuring Environment Variables with an env file:
+### Configuring Environment Variables with an env file (Optional):
 
 To simplify the management of environment variables and avoid hardcoding them directly in the Docker Compose file, you can use an env file. Here's how you can modify the existing Docker Compose file to utilize an env file:
 
