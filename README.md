@@ -107,3 +107,66 @@ The `services` section defines the different components of the application:
 - `depends_on`: Ensures that the prover frontend service starts only after the prover service is up and running.
 
 This configuration file essentially defines how the prover and its frontend components should be configured, connected, and deployed using Docker Compose. It simplifies the deployment process and ensures that the necessary dependencies and configurations are in place.
+
+### Configuring Environment Variables with an env file:
+
+To simplify the management of environment variables and avoid hardcoding them directly in the Docker Compose file, you can use an env file. Here's how you can modify the existing Docker Compose file to utilize an env file:
+
+1. **Create an env file:**
+
+   Create a file named `.env` in the same directory as your Docker Compose file. This file will store your environment variables.
+
+   ```dotenv
+   # .env file
+
+   # Prover Service
+   ZKEY=/app/binaries/zkLogin.zkey
+   WITNESS_BINARIES=/app/binaries
+
+   # Prover Frontend Service
+   PROVER_URI=http://prover:8080/input
+   NODE_ENV=production
+   DEBUG=zkLogin:info,jwks
+   ```
+
+   Adjust the values according to your specific configuration.
+
+2. **Modify Docker Compose file to use env file:**
+
+   Update your Docker Compose file to reference the env file:
+
+   ```yaml
+   version: '3'
+
+   services:
+     prover:
+       container_name: prover
+       image: mysten/zklogin:prover-a66971815c15ba10c699203c5e3826a18eabc4ee
+       env_file:
+         - .env
+       ports:
+         - '8000:8080'
+       volumes:
+         - ./zklogin-ceremony-contributions/zkLogin-main.zkey:/app/binaries/zkLogin.zkey
+
+     prover-fe:
+       image: mysten/zklogin:prover-fe-a66971815c15ba10c699203c5e3826a18eabc4ee
+       env_file:
+         - .env
+       ports:
+         - '8001:8080'
+       depends_on:
+         - prover
+   ```
+
+   The `env_file` key is added under each service, specifying the path to the env file.
+
+3. **Run Docker Compose with env file:**
+
+   Start your services using Docker Compose with the `-f` option to specify the Docker Compose file:
+
+   ```bash
+   docker-compose -f your-docker-compose-file.yml up
+   ```
+
+   Docker Compose will now read the environment variables from the specified env file, making it easier to manage and update configuration settings.
