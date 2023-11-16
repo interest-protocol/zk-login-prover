@@ -205,3 +205,10 @@ To simplify the management of environment variables and avoid hardcoding them di
    # Install Docker Compose
    sudo apt install docker-compose
    ```
+
+5. **Copy Docker Compose Files:**
+   Copy your Docker Compose files and the `.env` file to your Droplet. You can use `scp` to securely copy files from your local machine to the Droplet.
+
+   ```bash
+   scp -r /path/to/your/docker/project root@your_droplet_ip:/path/on/droplet
+   ```
