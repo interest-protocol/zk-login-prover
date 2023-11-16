@@ -244,3 +244,10 @@ To simplify the management of environment variables and avoid hardcoding them di
 
 10. **Access Services from Browser:**
     Open your web browser and navigate to `http://your_droplet_ip:8001/ping`. If everything is set up correctly, you should receive a response indicating that the service is operational.
+
+### Notes:
+- Ensure that your Digital Ocean Droplet has sufficient resources for your services.
+- Make sure to secure your Droplet by following best practices for SSH and firewall settings.
+- Regularly monitor your services and update the system to address any security vulnerabilities.
+
+This guide should help you deploy your Docker Compose setup on Digital Ocean. Adjust the steps based on your specific project requirements and configurations.
