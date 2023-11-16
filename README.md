@@ -170,3 +170,24 @@ To simplify the management of environment variables and avoid hardcoding them di
    ```
 
    Docker Compose will now read the environment variables from the specified env file, making it easier to manage and update configuration settings.
+
+   Certainly! Deploying a Docker Compose setup on Digital Ocean involves a few key steps. Below is a guide on how you can do this:
+
+### Deploying Docker Compose on Digital Ocean
+
+1. **Create a Digital Ocean Account:**
+   If you don't have a Digital Ocean account, sign up for one [here](https://www.digitalocean.com/).
+
+2. **Create a Droplet:**
+   - Log in to your Digital Ocean account.
+   - Click on "Create" and select "Droplets."
+   - Choose a distribution (e.g., Ubuntu), select an appropriate plan, and configure other settings as needed.
+   - In the "Authentication" section, add your SSH key or use a password for authentication.
+   - Click "Create Droplet."
+
+3. **Access Your Droplet:**
+   Use SSH to connect to your newly created Droplet. You can find the IP address of your Droplet on the Digital Ocean dashboard.
+
+   ```bash
+   ssh root@your_droplet_ip
+   ```
