@@ -86,3 +86,22 @@ The `services` section defines the different components of the application:
 - `ports`: Maps the host machine's port `8000` to the container's port `8080`.
 - `volumes`: Mounts the Zkey file from the host machine into the container.
 
+##### Prover Frontend Service:
+
+```yaml
+  prover-fe:
+    image: mysten/zklogin:prover-fe-a66971815c15ba10c699203c5e3826a18eabc4ee
+    environment:
+      - PROVER_URI=http://prover:8080/input
+      - NODE_ENV=production
+      - DEBUG=zkLogin:info,jwks
+    ports:
+      - '8001:8080'
+    depends_on:
+      - prover
+```
+
+- `image`: Specifies the Docker image for the prover frontend service.
+- `environment`: Sets environment variables for the prover frontend, such as the URI for the prover service, the node environment, and debug information.
+- `ports`: Maps the host machine's port `8001` to the container's port `8080`.
+- `depends_on`: Ensures that the prover frontend service starts only after the prover service is up and running.
