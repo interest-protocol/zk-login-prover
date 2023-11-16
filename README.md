@@ -105,3 +105,5 @@ The `services` section defines the different components of the application:
 - `environment`: Sets environment variables for the prover frontend, such as the URI for the prover service, the node environment, and debug information.
 - `ports`: Maps the host machine's port `8001` to the container's port `8080`.
 - `depends_on`: Ensures that the prover frontend service starts only after the prover service is up and running.
+
+This configuration file essentially defines how the prover and its frontend components should be configured, connected, and deployed using Docker Compose. It simplifies the deployment process and ensures that the necessary dependencies and configurations are in place.
