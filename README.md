@@ -48,3 +48,41 @@ Make sure you have the following dependencies installed on your system:
    If the installation was successful, you should receive a response indicating the service is operational.
 
 Feel free to refer to the [ZkLogin Docs](https://docs.sui.io/concepts/cryptography/zklogin#run-the-proving-service-in-your-backend) for any additional information or updates related to images and devnet keys.
+
+### Explanation of the Configuration File
+
+The provided configuration file is written in YAML and is designed for Docker Compose. It orchestrates the setup and deployment of the zk-login proving service. Let's break down the key components of the file:
+
+#### Version:
+
+```yaml
+version: '3'
+```
+
+This specifies the version of the Docker Compose file format being used. In this case, it's version 3.
+
+#### Services:
+
+The `services` section defines the different components of the application:
+
+##### Prover Service:
+
+```yaml
+  prover:
+    container_name: prover
+    image: mysten/zklogin:prover-a66971815c15ba10c699203c5e3826a18eabc4ee
+    environment:
+      - ZKEY=/app/binaries/zkLogin.zkey
+      - WITNESS_BINARIES=/app/binaries
+    ports:
+      - '8000:8080'
+    volumes:
+      - ./zklogin-ceremony-contributions/zkLogin-main.zkey:/app/binaries/zkLogin.zkey
+```
+
+- `container_name`: Specifies the name of the container.
+- `image`: Specifies the Docker image to be used for the prover service. In this case, it's pulling the image `mysten/zklogin:prover-a66971815c15ba10c699203c5e3826a18eabc4ee`.
+- `environment`: Sets environment variables required by the prover service, such as the path to the Zkey and witness binaries.
+- `ports`: Maps the host machine's port `8000` to the container's port `8080`.
+- `volumes`: Mounts the Zkey file from the host machine into the container.
+
