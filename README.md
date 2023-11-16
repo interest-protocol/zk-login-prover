@@ -229,3 +229,12 @@ To simplify the management of environment variables and avoid hardcoding them di
    ```
 
    The `-d` flag runs the services in the background.
+
+8. **Verify Deployment:**
+   Check if your services are running on your Droplet.
+
+   ```bash
+   docker ps
+   ```
+
+   This command should list the containers that are currently running.
