@@ -1,0 +1,3 @@
+[submodule "zklogin-ceremony-contributions"]
+	path = zklogin-ceremony-contributions
+	url = https://github.com/sui-foundation/zklogin-ceremony-contributions

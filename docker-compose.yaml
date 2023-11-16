@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  prover:
+    container_name: prover
+    image: mysten/zklogin:prover-a66971815c15ba10c699203c5e3826a18eabc4ee
+    environment:
+      - ZKEY=/app/binaries/zkLogin.zkey
+      - WITNESS_BINARIES=/app/binaries
+    ports:
+      - '8000:8080'
+    volumes:
+      - ./zklogin-ceremony-contributions/zkLogin-main.zkey:/app/binaries/zkLogin.zkey
+
+  prover-fe:
+    image: mysten/zklogin:prover-fe-a66971815c15ba10c699203c5e3826a18eabc4ee
+    environment:
+      - PROVER_URI=http://prover:8080/input
+      - NODE_ENV=production
+      - DEBUG=zkLogin:info,jwks
+    ports:
+      - '8001:8080'
+    depends_on:
+      - prover
