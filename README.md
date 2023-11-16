@@ -30,7 +30,7 @@ This repository is based on [ZkLogin Docs](https://docs.sui.io/concepts/cryptogr
     ```console
     docker-compose up
     ```
-5.  Wait a 1 minute until both services are up and ping the server to make sure the installation was successful
+5.  Wait a 1 minute until both services are up and ping the prover-fe to make sure the installation was successful
     ```console
     curl http://localhost:8001/ping
     ```
