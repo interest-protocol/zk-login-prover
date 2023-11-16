@@ -238,3 +238,9 @@ To simplify the management of environment variables and avoid hardcoding them di
    ```
 
    This command should list the containers that are currently running.
+
+9. **Configure Digital Ocean Firewall:**
+   In the Digital Ocean dashboard, navigate to the "Networking" section and configure the firewall to allow traffic on the necessary ports (e.g., 8000 and 8001).
+
+10. **Access Services from Browser:**
+    Open your web browser and navigate to `http://your_droplet_ip:8001/ping`. If everything is set up correctly, you should receive a response indicating that the service is operational.
