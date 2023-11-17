@@ -189,8 +189,10 @@ To simplify the management of environment variables and avoid hardcoding them di
    Use SSH to connect to your newly created Droplet. You can find the IP address of your Droplet on the Digital Ocean dashboard.
 
    ```bash
-   ssh root@your_droplet_ip
+   ssh -i $PATH_TO_PRIVATE_KEY root@$DROPLET_IP
    ```
+   
+   The `-i` points to the path of your private key.
 
 4. **Install Docker and Docker Compose:**
    Inside your Droplet, install Docker and Docker Compose.
@@ -206,19 +208,27 @@ To simplify the management of environment variables and avoid hardcoding them di
    sudo apt install docker-compose
    ```
 
-5. **Copy Docker Compose Files:**
-   Copy your Docker Compose files and the `.env` file to your Droplet. You can use `scp` to securely copy files from your local machine to the Droplet.
+5. **Git clone this repository**
 
    ```bash
-   scp -r /path/to/your/docker/project root@your_droplet_ip:/path/on/droplet
+   git clone https://github.com/interest-protocol/zk-login-prover.git
    ```
 
 6. **Navigate to Project Directory:**
-   SSH into your Droplet and navigate to the directory where your Docker Compose files are located.
+   Remove the local zklogin-ceremony contributions directory
 
    ```bash
-   ssh root@your_droplet_ip
-   cd /path/on/droplet
+   # Enter the zk-login-prover directory
+   cd zk-login-prover
+	
+	# Remove the zklogin-ceremony-contributions directory
+   rm -rf zklogin-ceremony-contributions
+	
+	# Install git-lfs
+   sudo apt-get install git-lfs
+   
+   # Install zklogin-ceremony-contributions
+   wget -O - https://raw.githubusercontent.com/sui-foundation/zklogin-ceremony-contributions/main/download-main-zkey.sh | bash
    ```
 
 7. **Start Docker Services:**
@@ -239,11 +249,16 @@ To simplify the management of environment variables and avoid hardcoding them di
 
    This command should list the containers that are currently running.
 
-9. **Configure Digital Ocean Firewall:**
-   In the Digital Ocean dashboard, navigate to the "Networking" section and configure the firewall to allow traffic on the necessary ports (e.g., 8000 and 8001).
+9. **Ping your droplet from another terminal window:**
+   Check that the droplet replies with `pong`
 
-10. **Access Services from Browser:**
-    Open your web browser and navigate to `http://your_droplet_ip:8001/ping`. If everything is set up correctly, you should receive a response indicating that the service is operational.
+    ```bash
+    curl http://$DROPLET_IP:8001/ping
+    ```
+
+11. **Configure Digital Ocean Firewall:**
+   In the Digital Ocean dashboard, navigate to the "Networking" section and configure the firewall to whitelist your IP address.
+
 
 ### Notes:
 - Ensure that your Digital Ocean Droplet has sufficient resources for your services.
@@ -251,3 +266,4 @@ To simplify the management of environment variables and avoid hardcoding them di
 - Regularly monitor your services and update the system to address any security vulnerabilities.
 
 This guide should help you deploy your Docker Compose setup on Digital Ocean. Adjust the steps based on your specific project requirements and configurations.
+
