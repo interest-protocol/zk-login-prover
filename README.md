@@ -170,3 +170,84 @@ To simplify the management of environment variables and avoid hardcoding them di
    ```
 
    Docker Compose will now read the environment variables from the specified env file, making it easier to manage and update configuration settings.
+
+   Certainly! Deploying a Docker Compose setup on Digital Ocean involves a few key steps. Below is a guide on how you can do this:
+
+### Deploying Docker Compose on Digital Ocean
+
+1. **Create a Digital Ocean Account:**
+   If you don't have a Digital Ocean account, sign up for one [here](https://www.digitalocean.com/).
+
+2. **Create a Droplet:**
+   - Log in to your Digital Ocean account.
+   - Click on "Create" and select "Droplets."
+   - Choose a distribution (e.g., Ubuntu), select an appropriate plan, and configure other settings as needed.
+   - In the "Authentication" section, add your SSH key or use a password for authentication.
+   - Click "Create Droplet."
+
+3. **Access Your Droplet:**
+   Use SSH to connect to your newly created Droplet. You can find the IP address of your Droplet on the Digital Ocean dashboard.
+
+   ```bash
+   ssh root@your_droplet_ip
+   ```
+
+4. **Install Docker and Docker Compose:**
+   Inside your Droplet, install Docker and Docker Compose.
+
+   ```bash
+   # Update package lists
+   sudo apt update
+
+   # Install Docker
+   sudo apt install docker.io
+
+   # Install Docker Compose
+   sudo apt install docker-compose
+   ```
+
+5. **Copy Docker Compose Files:**
+   Copy your Docker Compose files and the `.env` file to your Droplet. You can use `scp` to securely copy files from your local machine to the Droplet.
+
+   ```bash
+   scp -r /path/to/your/docker/project root@your_droplet_ip:/path/on/droplet
+   ```
+
+6. **Navigate to Project Directory:**
+   SSH into your Droplet and navigate to the directory where your Docker Compose files are located.
+
+   ```bash
+   ssh root@your_droplet_ip
+   cd /path/on/droplet
+   ```
+
+7. **Start Docker Services:**
+   Run Docker Compose to start your services.
+
+   ```bash
+   docker-compose up -d
+   ```
+
+   The `-d` flag runs the services in the background.
+
+8. **Verify Deployment:**
+   Check if your services are running on your Droplet.
+
+   ```bash
+   docker ps
+   ```
+
+   This command should list the containers that are currently running.
+
+9. **Configure Digital Ocean Firewall:**
+   In the Digital Ocean dashboard, navigate to the "Networking" section and configure the firewall to allow traffic on the necessary ports (e.g., 8000 and 8001).
+
+10. **Access Services from Browser:**
+    Open your web browser and navigate to `http://your_droplet_ip:8001/ping`. If everything is set up correctly, you should receive a response indicating that the service is operational.
+
+### Notes:
+- Ensure that your Digital Ocean Droplet has sufficient resources for your services.
+- Make sure to secure your Droplet by following best practices for SSH and firewall settings.
+- Regularly monitor your services and update the system to address any security vulnerabilities.
+
+This guide should help you deploy your Docker Compose setup on Digital Ocean. Adjust the steps based on your specific project requirements and configurations.
